@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ManagementUserController;
-use App\Http\Controllers\DetailProfileController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+// use App\Http\Controllers\DetailProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +20,25 @@ use App\Http\Controllers\DetailProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return view('home');
-});
+
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
 //Route::get('/user', [ManagementUserController::class, 'index']);
 Route::resource('/user', ManagementUserController::class);
 
+
+Route::group(
+    ['namespace' => 'App\Http\Controllers\Frontend'],
+    function () {
+        Route::resource('/home', HomeController::class);
+    }
+);
+
+Route::group(
+    ['namespace' => 'App\Http\Controllers\Backend'],
+    function () {
+        Route::resource('/dashboard', DashboardController::class);
+    }
+);
