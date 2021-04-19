@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ManagementUserController;
+use App\Http\Middleware\CheckAge;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // use App\Http\Controllers\DetailProfileController;
@@ -42,3 +44,27 @@ Route::group(
         Route::resource('/dashboard', DashboardController::class);
     }
 );
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('admin/profile', function ($id) {
+    //
+})->middleware(CheckAge::class);
+
+Route::get('/', function ($id) {
+    //
+})->middleware('web');
+
+Route::group(['middleware' => ['web']], function () {
+    //
+});
+
+Route::middleware(['web', 'subcsribed'])->group(function () {
+    //
+});
+
+Route::put('post/{id}', function ($id) {
+    //
+})->middleware('role:editor');

@@ -17,6 +17,10 @@ class DetailProfileSeeder extends Seeder
     public function run()
     {
         DB::table('detail_profile')->insert([
+            'address' => 'Jember',
+            'nomor_tlp' => '082678345769',
+            'ttl' => '2021-03-02',
+            'foto' => 'picture.png'
         ]);
     }
 }
