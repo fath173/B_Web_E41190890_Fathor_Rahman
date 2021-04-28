@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -53,7 +55,7 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        if (auth()->Auth::attempt($login)) {
+        if (Auth::attempt($login)) {
             return redirect()->route('home');
         }
         return redirect()->route('login')->with(['error' => 'Email/Password Salah!']);

@@ -31,6 +31,7 @@ Route::get('/', function () {
 Route::resource('/user', ManagementUserController::class);
 
 
+
 Route::group(
     ['namespace' => 'App\Http\Controllers\Frontend'],
     function () {
@@ -42,8 +43,24 @@ Route::group(
     ['namespace' => 'App\Http\Controllers\Backend'],
     function () {
         Route::resource('/dashboard', DashboardController::class);
+        Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);
     }
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Auth::routes();
 
@@ -53,9 +70,9 @@ Route::get('admin/profile', function ($id) {
     //
 })->middleware(CheckAge::class);
 
-Route::get('/', function ($id) {
-    //
-})->middleware('web');
+// Route::get('/', function ($id) {
+//     //
+// })->middleware('web');
 
 Route::group(['middleware' => ['web']], function () {
     //

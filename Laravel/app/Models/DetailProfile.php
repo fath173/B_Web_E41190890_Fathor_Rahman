@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DetailProfile extends Model
 {
     use HasFactory;
+    protected $table = 'detail_profile';
 }
